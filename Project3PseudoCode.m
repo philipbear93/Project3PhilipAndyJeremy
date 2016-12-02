@@ -25,6 +25,8 @@
 % Input K and M matrices from problem statement
 % Input R and duration from problem statement
 
+% Calculate C from K, M and a given Zeta using Cmatrix
+
 % Calculate Dpp0 using a finite difference
 
 % Select time step
