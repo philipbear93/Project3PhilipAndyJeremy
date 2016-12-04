@@ -16,6 +16,6 @@ function [ Dn1 ] = Dnplus1( Dn,Dpn,Dppn,Rn1,gamma,beta,M,K,C,dt )
 Part1=(1/(beta*dt^2))*M+(gamma/(beta*dt))*C+K;
 Part2=Rn1+M*((1/(beta*dt^2))*Dn+(1/(beta*dt))*Dpn+(1/(2*beta)-1)*Dppn);
 Part3=C*((gamma/(beta*dt))*Dn+(gamma/beta-1)*Dpn+(gamma/beta-2)*(dt/2)*Dppn);
-Dn1=Part1\(Part2+Part3);
+Dn1=real(Part1\(Part2+Part3));
 end
 

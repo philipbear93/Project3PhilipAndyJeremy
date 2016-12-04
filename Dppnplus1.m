@@ -10,7 +10,7 @@ function [ Dppn1 ] = Dppnplus1( Dn,Dpn,Dppn,Dn1,beta,dt )
 % Calculate Dppn1
 Part1=(1/(beta*dt^2))*(Dn1-Dn-dt*Dpn);
 Part2=(1/(2*beta)-1)*Dppn;
-Dppn1=Part1-Part2;
+Dppn1=real(Part1-Part2);
 
 end
 

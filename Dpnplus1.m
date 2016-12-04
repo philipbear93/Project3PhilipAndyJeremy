@@ -12,7 +12,7 @@ function [ Dpn1 ] = Dpnplus1( Dn,Dpn,Dppn,Dn1,gamma,beta,dt )
 Part1=(gamma/(beta*dt))*(Dn1-Dn);
 Part2=(gamma/beta-1)*Dpn;
 Part3=dt*(gamma/(2*beta)-1)*Dppn;
-Dpn1=Part1-Part2-Part3;
+Dpn1=real(Part1-Part2-Part3);
 
 end
 
