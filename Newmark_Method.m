@@ -25,7 +25,7 @@ Beta = 0.25;
 
 %% Newmark
 
-[POS,VEL,ACC,T] = NewmarkBetaSolver(K,M,R,Zeta,dt,t,teff,Gamma,Beta);
+[POS,VEL,ACC,T] = NewmarkBetaSolver(K,M,Fr,Zeta,dt,t,teff,Gamma,Beta)
 
 
 %% Plot 

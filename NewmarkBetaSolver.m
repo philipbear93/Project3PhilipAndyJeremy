@@ -5,14 +5,14 @@ function [ POS,VEL,ACC,T ] = NewmarkBetaSolver( K,M,R,Zeta,dt,t,teff,gamma,beta 
 % POS, VEL and ACC are the position, velocity and acceleration at time T
 
 % Calculate C from K, M and a given Zeta
-C=Cmatrix(K,M,Zeta);
+C=Cmatrix(K,M,Zeta)
 
 % Assume initial deflection and velocity are zero
-Dn=zeros(size(K,1),1)
+Dn=zeros(size(K,1),1);
 Dpn=zeros(size(K,1),1);
 
 % Calculate Dppn0 using F=ma;
-Dppn=full(M\R) 
+Dppn=full(M\R)
 
 % Create force matrix for after teff
 R0=zeros(size(R,1),size(R,2));
