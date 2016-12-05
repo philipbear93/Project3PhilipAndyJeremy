@@ -8,17 +8,17 @@ function [ POS,VEL,ACC,T ] = NewmarkBetaSolver( K,M,R,Zeta,dt,t,teff,gamma,beta 
 C=Cmatrix(K,M,Zeta);
 
 % Assume initial deflection and velocity are zero
-Dn=zeros(size(K,1),size(K,2));
-Dpn=zeros(size(K,1),size(K,2));
+Dn=zeros(size(K,1),1)
+Dpn=zeros(size(K,1),1);
 
 % Calculate Dppn0 using F=ma;
-Dppn=R./M;
+Dppn=full(M\R) 
 
 % Create force matrix for after teff
 R0=zeros(size(R,1),size(R,2));
 
 T=0:dt:t;
-I=size(T,1);
+I=size(T,2);
 
 % Loop over time
 for i=1:I
