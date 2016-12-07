@@ -1,6 +1,6 @@
 variables
 %All of these actions are not the most efficient for this problem.
-t=.01 %Should be 0.1--This removes slenderness errors
+t=.1 %Should be 0.1--This removes slenderness errors
 l=1
 Ixx1=1/12*t^4
 Ixx2=Ixx1
@@ -18,7 +18,7 @@ element properties
 % Run "units" and type "who" to see variables/values available inside your
 % input file
 
-Beam2Element elements
+beam3kustom elements
 %node1 node2 pointnum (beam properties number)
 1 2 1 1
 2 3 1 1
@@ -54,6 +54,6 @@ actions
 modalanalysis
 staticanalysis
 plotdeformed
-%X
+X(1:27)
 
 end
