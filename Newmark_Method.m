@@ -3,12 +3,9 @@ close all
 clear all
 clc
 
-global Kr
-global Mr
-global Fr
 global K
 global M
-global R
+global F
 global nodes
 
 run wfem
@@ -17,13 +14,28 @@ run wfem
 numofelem = size(nodes,1)-1;
 dof = (size(nodes,1)*6)-9;
 %% Pull Force Vector & Stiffness and Mass Matricies from wfem 
-K = full(Kr);
-M = full(Mr);
-R = full(Fr);
+
+K = full(K);
+M = full(M);
+R = full(F);
+
+Kr = K(1:size(nodes,1)*6,1:size(nodes,1)*6);
+Mr = M(1:size(nodes,1)*6,1:size(nodes,1)*6);
+Rr = R(1:size(nodes,1)*6);
+
+bcs = [1 2 152];
+K(stripdof,:) = [];
+K(:,stripdof) = [];
+K(bcs,:) = [];
+K(:,bcs) = [];
+M(stripdof,:) = [];
+M(:,stripdof) = [];
+M(bcs,:) = [];
+M(:,bcs) = [];
 
 %% Select an appropriate dt, gamma and beta
-t = 0.02;
-dt = .00002; %Delta t in seconds
+t = 0.15;
+dt = .0001; %Delta t in seconds
 teff = .01;
 
 Gamma = [1/2 1/2 1/2];
@@ -33,7 +45,7 @@ Beta = [1/4 1/6 1/12];
     Zeta = .02; %Damping Ratio
 
     %Determine Mode Shapes and Eigenvalues
-    [mode, lam ]= eig(K);
+    [mode, lam ]= eig(Kr);
     w = sqrt(lam);
 
     lam_mat = 2*Zeta*w;
