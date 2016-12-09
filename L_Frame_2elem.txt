@@ -48,8 +48,5 @@ modalanalysis
 staticanalysis
 %plotdeformed
 %X(1:27)
-K
-M
-F
 
 end
