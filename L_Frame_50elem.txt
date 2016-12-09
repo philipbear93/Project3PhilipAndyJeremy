@@ -138,6 +138,6 @@ actions
 modalanalysis
 staticanalysis
 plotdeformed
-Kr
-Mr
+K
+M
 end
