@@ -205,33 +205,7 @@ if strcmp(mode,'make')
   kb2=kb1; %Stiffness matrix for the x-z plane beam element. 
   l=norm([x2 y2 z2]-[x1 y1 z1]);
   propertynum=num2str(element(elnum).properties);
-  % Allowable aspect ratio. I recommend D/l=.1
-  if isempty(DoverL)==1
-    DoverL=.1;
-  end
-  %Euler bernoulli beams must be slender. Warn if not. 
-  if sqrt(A1*4/pi)/l>DoverL|sqrt(A2*4/pi)/l>DoverL
-    warndlg({['Dimensions of element ' num2str(elnum) ' using properties '...
-	      propertynum ' are more suitable for a Timoshenko beam.'];...
-	     'radius divided by length is too large'},...
-	    'Improper application of element.','replace')
-  end
-  % This took some work, but provide bounds on other values. 
-  if (Izz1+Iyy1)<(1/2.1*A1^2/pi)|(Izz2+Iyy2)<(1/2.1*A2^2/pi)
-    %2.0 would be exact for a circle
-    warndlg({['Iyy+Izz for properties number' propertynum ' can''t be as '...
-	      'low as have been given.'];...
-	     'Nonphysical properties.'},['Impossible cross sectional' ...
-		    ' properties'],'replace')
-  end
-  slenderness=min([sqrt((Izz1+Iyy1)/A1) sqrt((Izz2+Iyy2)/A2)])/l;
-  % Check if this is a beam or something so thin that its really a
-  % string. 
-  if slenderness<.002
-    disp([num2str(elnum) ['is a rediculously thin element. Please' ...
-		    ' check numbers.']])
-  end
-  
+ 
   Jac=l/2;% Beam Jacobian. valid only if node three is in the
           % middle of the beam. Luck for us, it always is (or the
           % code yells at you)
@@ -458,4 +432,3 @@ elseif strcmp(mode,'istrainforces')
 elseif strcmp(mode,'draw')
 elseif strcmp(mode,'buckle')
 end
-
