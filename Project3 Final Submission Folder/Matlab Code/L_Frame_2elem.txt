@@ -1,0 +1,52 @@
+variables
+%All of these actions are not the most efficient for this problem.
+t=.1 %Should be 0.1--This removes slenderness errors
+l=2
+Ixx1=1/12*t^4
+Ixx2=Ixx1
+Iyy1=Ixx1 %1/12*l*t^3
+Iyy2=Iyy1
+J1=0.95*(Ixx1+Iyy1)
+J2=0.95*(Ixx2+Iyy2)
+
+element properties
+% Beam format
+% E G rho    A1    A2    J1 J2 Ixx1 Ixx2 Iyy1 Iyy2
+   steel    t^2  (t)^2   J1 J2 Ixx1 Ixx2 Iyy1 Iyy2
+%Note that these were defined above. I can use variables in my input file.
+% I also used "steel" as a property. WFEM has some of these predefined. 
+% Run "units" and type "who" to see variables/values available inside your
+% input file
+
+Beam2Element elements
+%node1 node2 pointnum (beam properties number)
+1 2 1 1
+2 3 1 1
+
+nodes
+% I can include comment lines
+% node num, x y z, Node number isn't ever stored in nodes matrix
+1 0   0     0 
+2 0   1.5*l 0
+3 l   1.5*l 0
+
+points
+1 1 1 1
+
+fix pin
+1 0 0 1
+
+fix roller
+6 0 0 1 1 0 0
+
+load 
+%node# dof# load
+3 1 100000
+
+actions
+modalanalysis
+staticanalysis
+%plotdeformed
+%X(1:27)
+
+end
